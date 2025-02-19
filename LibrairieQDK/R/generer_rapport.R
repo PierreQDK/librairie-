@@ -9,7 +9,7 @@
 #' @export
 generer_rapport <- function(commune, departement, output) {
   # Charger le fichier .qmd depuis le dossier 'inst'
-  rapport_template <- system.file("inst", "rapport.qmd", package = "LibrairieQDK")
+  rapport_template <- system.file("inst", "Rapport.qmd", package = "LibrairieQDK")
 
   # Vérification de la présence du fichier .qmd
   if (rapport_template == "") {
