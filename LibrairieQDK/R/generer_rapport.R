@@ -9,8 +9,9 @@
 #' @export
 generer_rapport <- function(commune, departement, output) {
   # Charger le fichier .qmd depuis le dossier 'inst'
-  rapport_template <- system.file("inst", "rapport.qmd", package = "votre_librairie")
+  rapport_template <- system.file("inst", "rapport.qmd", package = "LibrairieQDK")
 
+  # Vérification de la présence du fichier .qmd
   if (rapport_template == "") {
     stop("Le fichier rapport.qmd n'a pas été trouvé dans le dossier inst.")
   }
@@ -21,5 +22,6 @@ generer_rapport <- function(commune, departement, output) {
   # Utiliser Quarto pour compiler le rapport
   quarto::quarto_render(rapport_template, output_file = output, params = params)
 
+  # Message de confirmation
   message("Le rapport a été généré et sauvegardé dans : ", output)
 }
