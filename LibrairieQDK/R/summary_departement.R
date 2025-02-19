@@ -17,8 +17,9 @@
 #' plot_departement(df_Loire_Atlantique)
 #' plot_departement(df_Gers)
 
-summary_departement <- function(x){
+summary_departement <- function(x) {
 
+  # Vérification de la validité des données
   if (length(table(x$Libellé.de.la.commune)) == 1) {
     stop("L'objet doit contenir plus d'une commune")
   }
@@ -27,7 +28,7 @@ summary_departement <- function(x){
     stop("L'objet doit contenir 1 département unique")
   }
 
-  nom_du_departement <- x[1,2]
+  nom_du_departement <- as.character(x[1,2])
 
   nbre_communes <- length(table(x$Libellé.de.la.commune))
 
@@ -40,16 +41,16 @@ summary_departement <- function(x){
 
 
   jeune <- x[which.min(x$Age), c("Nom.de.l.élu", "Age", "Libellé.de.la.commune")]
-  jeune_nom <- jeune[1, 1]
-  jeune_Age <- jeune[1, 2]
-  jeune_commune <- jeune[1, 3]
+  jeune_nom <- as.character(jeune[1, 1])
+  jeune_Age <- as.character(jeune[1, 2])
+  jeune_commune <- as.character(jeune[1, 3])
 
   vieux <- x[which.max(x$Age), c("Nom.de.l.élu", "Age", "Libellé.de.la.commune")]
-  vieux_nom <- vieux[1, 1]
-  vieux_Age <- vieux[1, 2]
-  vieux_commune <- vieux[1, 3]
+  vieux_nom <- as.character(vieux[1, 1])
+  vieux_Age <- as.character(vieux[1, 2])
+  vieux_commune <- as.character(vieux[1, 3])
 
-  # renvoie un df avec les moyennes par communes
+  # Renvoie un df avec les moyennes par communes
   moyenne_par_commune <- aggregate(Age ~ Libellé.de.la.commune, data = x, FUN = mean)
   haute_moy_age <- moyenne_par_commune[which.max(moyenne_par_commune$Age),]
   faible_moy_age <- moyenne_par_commune[which.min(moyenne_par_commune$Age),]
@@ -60,6 +61,7 @@ summary_departement <- function(x){
   commune_faible <- x[grepl(faible_moy_age[1, 1], x$Libellé.de.la.commune), ]
   distribution_age_faible <- calcul_distribution_age(commune_faible)
 
+  # Affichage des résultats
   cat("Nom du département:", nom_du_departement, "\n",
       "Nombre de communes: ", nbre_communes, "\n",
       "Nombre d'élus: ", Nbre_elu, "\n")
@@ -72,14 +74,14 @@ summary_departement <- function(x){
       "le plus ancien:", vieux_nom, "\n", vieux_Age,"ans", "\n", vieux_commune, "\n",
       "le plus récent:", jeune_nom, "\n", jeune_Age,"ans", "\n", jeune_commune, "\n")
 
-  cat("Commune avec plus haute moyenne d'âge: ",haute_moy_age[1, 1], round(haute_moy_age[1, 2]), "ans", "\n",
+  cat("Commune avec plus haute moyenne d'âge: ",as.character(haute_moy_age[1, 1]), round(haute_moy_age[1, 2]), "ans", "\n",
       "Distribution des âges: ", "min", distribution_age_haute[1],
       ", 25% à", distribution_age_haute[2],
       ", 50% à", distribution_age_haute[3],
       ", 75% à", distribution_age_haute[4],
       ", 100% à", distribution_age_haute[5],"\n")
 
-  cat("Commune avec plus faible moyenne d'âge: ",faible_moy_age[1, 1], round(faible_moy_age[1, 2]), "ans", "\n",
+  cat("Commune avec plus faible moyenne d'âge: ",as.character(faible_moy_age[1, 1]), round(faible_moy_age[1, 2]), "ans", "\n",
       "Distribution des âges: ", "min", distribution_age_faible[1],
       ", 25% à", distribution_age_faible[2],
       ", 50% à", distribution_age_faible[3],
@@ -87,6 +89,5 @@ summary_departement <- function(x){
       ", 100% à", distribution_age_faible[5],
       "\n", "\n"
   )
-
 
 }
