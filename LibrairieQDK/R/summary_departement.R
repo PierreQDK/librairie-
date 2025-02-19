@@ -34,6 +34,9 @@ summary_departement <- function(df) {
     stop("Erreur: Plusieurs départements détectés.")
   }
 
+  # S'assurer que nom_du_departement est un vecteur de caractères
+  nom_du_departement <- as.character(nom_du_departement)
+
   # Nombre de communes
   nbre_communes <- length(unique(df$Libellé.de.la.commune))
 
