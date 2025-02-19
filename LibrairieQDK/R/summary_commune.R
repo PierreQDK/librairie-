@@ -31,25 +31,20 @@ summary_commune <- function(df) {
     stop("Erreur: Pas de dates valides dans la colonne 'Date.de.naissance'")
   }
 
-  # 🔹 Extraire les informations essentielles
+  # Extraire les informations essentielles
   nom_de_la_commune <- unique(df$Libellé.de.la.commune)
   if (length(nom_de_la_commune) > 1) {
     stop("Erreur: Plusieurs communes détectées")
   }
-  print(paste("Nom de la commune:", nom_de_la_commune))
 
-  # 🔹 Nombre d'élus
+  # Nombre d'élus
   Nbre_elu <- nrow(df)
-  print(paste("Nombre d'élus:", Nbre_elu))
 
-  # 🔹 Distribution des âges
+  # Calculer l'âge des élus
   df$Age <- as.numeric(Sys.Date() - df$Date.de.naissance) %/% 365  # Calcul de l'âge
   distribution_age <- quantile(df$Age, probs = c(0.25, 0.5, 0.75, 1), na.rm = TRUE)
 
-  print("Distribution des âges:")
-  print(distribution_age)
-
-  # 🔹 Trouver l'élu le plus âgé
+  # Trouver l'élu le plus âgé
   age_vieux <- max(df$Age, na.rm = TRUE)
   nom_vieux <- df$Nom.de.l.élu[df$Age == age_vieux]
 
@@ -58,9 +53,18 @@ summary_commune <- function(df) {
     nom_vieux <- nom_vieux[1]
   }
 
-  print(paste("Nom et âge de l'élu le plus âgé:", nom_vieux, "-", age_vieux, "ans"))
+  # Afficher les résultats
+  cat("Nom de la commune:", nom_de_la_commune, "\n")
+  cat("Nombre d'élus:", Nbre_elu, "\n")
+  cat("Distribution des âges:\n",
+      "  - 25% :", distribution_age[1], "\n",
+      "  - 50% :", distribution_age[2], "\n",
+      "  - 75% :", distribution_age[3], "\n",
+      "  - 100% :", distribution_age[4], "\n")
 
-  # 🔹 Résumé final sous forme de liste pour affichage
+  cat("Nom et âge de l'élu le plus âgé:", nom_vieux, "-", age_vieux, "ans\n")
+
+  # ✅ Retourner les informations sous forme de liste
   return(list(
     Commune = nom_de_la_commune,
     Nombre_elus = Nbre_elu,
