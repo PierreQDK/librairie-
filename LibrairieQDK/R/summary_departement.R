@@ -17,7 +17,7 @@
 #' plot_departement(df_Loire_Atlantique)
 #' plot_departement(df_Gers)
 
-summary.departement <- function(x){
+summary_departement <- function(x){
 
   if (length(table(x$Libellé.de.la.commune)) == 1) {
     stop("L'objet doit contenir plus d'une commune")

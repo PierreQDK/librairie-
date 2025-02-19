@@ -19,7 +19,7 @@
 #' # Exemple avec deux jeux de données représentant des communes
 #' summary_commune(df_Nantes)
 #' summary_commune(df_Faverelles)
-summary.commune <- function(x){
+summary_commune <- function(x){
 
   if (length(table(x$Libellé.de.la.commune)) != 1) {
     stop("L'objet doit contenir 1 communes")
