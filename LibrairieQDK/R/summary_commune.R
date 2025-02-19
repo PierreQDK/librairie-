@@ -19,30 +19,37 @@
 #' # Exemple avec deux jeux de données représentant des communes
 #' summary_commune(df_Nantes)
 #' summary_commune(df_Faverelles)
-summary_commune <- function(x){
-
-  if (length(table(x$Libellé.de.la.commune)) != 1) {
-    stop("L'objet doit contenir 1 communes")
+summary_commune <- function(df) {
+  # Vérifier l'existence de la colonne avant conversion
+  if (!"Date.de.naissance" %in% colnames(df)) {
+    stop("Erreur: La colonne 'Date.de.naissance' est introuvable")
   }
 
+  # Vérifier si la colonne est vide après conversion
+  if (nrow(df) == 0 || all(is.na(df$Date.de.naissance))) {
+    stop("Erreur: Pas de dates valides dans la colonne 'Date.de.naissance'")
+  }
 
-  nom_de_la_commune <- x[1,6]
+  # Identifier l'élu le plus âgé
+  age_vieux <- min(df$Date.de.naissance, na.rm = TRUE)
 
-  # je sors un vect avec TRUE pour chaque occurence de Maire et je compte nbre TRUE
-  Nbre_elu <- sum(grepl("Maire", x$Libellé.de.la.fonction, fixed  = TRUE))
+  # Vérifier si age_vieux est bien calculé
+  if (is.na(age_vieux)) {
+    stop("Erreur: Impossible de déterminer l'âge le plus élevé.")
+  }
 
-  nom_vieux <- trouver_l_elu_le_plus_age(x)[1, 1]
-  age_vieux <- calcul_distribution_age(x)[5]
+  # Extraire le nom de l'élu
+  nom_vieux <- df$Nom.de.l.élu[df$Date.de.naissance == age_vieux]
 
-  distribution_age <- calcul_distribution_age(x)
+  # Vérifier si nom_vieux est vide
+  if (length(nom_vieux) == 0) {
+    stop("Erreur: Aucun élu trouvé pour l'âge le plus vieux.")
+  }
 
-  cat("Nom de la commune: ",nom_de_la_commune, "\n")
-  cat("Nombre d'élus: ",Nbre_elu, "\n")
-  cat("Distribution des âges: ", "min", distribution_age[1],
-      ", 25% à", distribution_age[2],
-      ", 50% à", distribution_age[3],
-      ", 75% à", distribution_age[4],
-      ", 100% à", distribution_age[5],"\n")
-  cat("Nom et âge de l'élu vieux comme le monde: ",nom_vieux, age_vieux,"ans", "\n", "\n")
+  # Vérifier que nom_vieux n'est pas une liste
+  nom_vieux <- as.character(nom_vieux[1])  # Prendre le premier nom s'il y en a plusieurs
+
+  cat("Nom et âge de l'élu le plus âgé:", nom_vieux, "-", as.numeric(Sys.Date() - age_vieux) %/% 365, "ans\n")
 }
+
 
