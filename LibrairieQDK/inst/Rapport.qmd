@@ -19,16 +19,12 @@ library(ggplot2)
 
 ```
 
-
-
-
 ```{r}
 # Définition des paramètres de la commune et du département
 commune_code <- as.character(params$code_commune)
 departement_code <- as.character(params$code_departement)
 
 ```
-
 
 ```{r}
 # Vérification des colonnes et conversion des types de données
@@ -41,7 +37,6 @@ elus_data[["Code du département"]] <- as.character(elus_data[["Code du départe
 #print(unique(elus_data[["Code du département"]]))  
 
 ```
-
 
 ```{r}
 # Filtrage des données pour la commune et le département spécifiés
@@ -81,7 +76,6 @@ cat("Nom de la commune:", nom_de_la_commune, "\n")
 
 ```
 
-
 ```{r}
 # Vérification et conversion des dates de naissance pour la commune
 #print(unique(commune_data$Date.de.naissance))  # Vérifier le format des dates
@@ -93,7 +87,6 @@ commune_data$Date.de.naissance <- as.Date(
 )
 
 ```
-
 
 ```{r}
 # Exécution de summary_commune() pour obtenir un résumé des données de la commune
@@ -108,7 +101,6 @@ commune_plot <- plot_commune(commune_data)
 print(commune_plot)
 
 ```
-
 
 ```{r}
 # Nettoyage des noms de colonnes pour les données du département
@@ -130,8 +122,6 @@ departement_data$Date.de.naissance <- as.Date(
 
 ```
 
-
-
 ```{r}
 # Extraction du nom du département
 nom_du_departement <- unique(departement_data$Libellé.du.département)
@@ -151,7 +141,6 @@ cat("Nom du département:", nom_du_departement, "\n")
 
 ```
 
-
 ```{r}
 # Exécution de summary_departement() pour obtenir un résumé des données du département
 departement_summary <- summary_departement(departement_data)
@@ -165,4 +154,3 @@ departement_plot <- plot_departement(departement_data)
 print(departement_plot)
 
 ```
-
