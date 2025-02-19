@@ -2,6 +2,7 @@
 
 export(calcul_distribution_age)
 export(compter_nombre_d_adjoints)
+export(generer_rapport)
 export(plot_code_professions)
 export(plot_commune)
 export(plot_departement)

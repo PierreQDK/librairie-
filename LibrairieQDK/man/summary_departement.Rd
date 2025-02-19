@@ -4,7 +4,7 @@
 \alias{summary_departement}
 \title{Une fonction pour avoir un résumé des informations d'un département}
 \usage{
-summary_departement(x)
+summary_departement(df)
 }
 \arguments{
 \item{df}{Un data frame contenant les informations des élus, incluant

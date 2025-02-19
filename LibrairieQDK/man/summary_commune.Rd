@@ -4,7 +4,7 @@
 \alias{summary_commune}
 \title{Résumé des informations d'une commune}
 \usage{
-summary_commune(x)
+summary_commune(df)
 }
 \arguments{
 \item{x}{Un objet de type \code{data.frame} représentant une commune et contenant
