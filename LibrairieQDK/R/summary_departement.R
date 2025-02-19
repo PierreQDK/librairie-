@@ -17,77 +17,76 @@
 #' plot_departement(df_Loire_Atlantique)
 #' plot_departement(df_Gers)
 
-summary_departement <- function(x) {
-
-  # Vérification de la validité des données
-  if (length(table(x$Libellé.de.la.commune)) == 1) {
-    stop("L'objet doit contenir plus d'une commune")
+summary_departement <- function(df) {
+  # Vérification de l'existence de la colonne "Date.de.naissance"
+  if (!"Date.de.naissance" %in% colnames(df)) {
+    stop("Erreur: La colonne 'Date.de.naissance' est absente.")
   }
 
-  if (length(table(x$Libellé.du.département)) != 1) {
-    stop("L'objet doit contenir 1 département unique")
+  # Vérifier s'il y a des données
+  if (nrow(df) == 0) {
+    stop("Erreur: Aucune donnée disponible pour ce département.")
   }
 
-  nom_du_departement <- as.character(x[1,2])
+  # Extraction du nom du département
+  nom_du_departement <- unique(df$Libellé.du.département)
+  if (length(nom_du_departement) > 1) {
+    stop("Erreur: Plusieurs départements détectés.")
+  }
 
-  nbre_communes <- length(table(x$Libellé.de.la.commune))
+  # Nombre de communes
+  nbre_communes <- length(unique(df$Libellé.de.la.commune))
 
-  Nbre_elu <- sum(grepl("Maire", x$Libellé.de.la.fonction, fixed  = TRUE))
+  # Vérifier le format de la colonne "Date.de.naissance"
+  if (!inherits(df$Date.de.naissance, "Date")) {
+    df$Date.de.naissance <- as.Date(df$Date.de.naissance, format = "%Y-%m-%d")
+  }
 
-  vect_distribution_age <- calcul_distribution_age(x)
+  # Vérifier s'il y a des dates valides
+  if (all(is.na(df$Date.de.naissance))) {
+    stop("Erreur: Aucune date de naissance valide.")
+  }
 
-  x$Date.de.naissance <- as.Date(x$Date.de.naissance, format = "%d/%m/%Y")
-  x$Age <- as.numeric(difftime(Sys.Date(), x$Date.de.naissance, units = "weeks")) %/% 52.25
+  # Calculer l'âge des élus
+  df$Age <- as.numeric(Sys.Date() - df$Date.de.naissance) %/% 365
 
+  # Vérifier la distribution des âges
+  distribution_age <- quantile(df$Age, probs = c(0.25, 0.5, 0.75, 1), na.rm = TRUE)
 
-  jeune <- x[which.min(x$Age), c("Nom.de.l.élu", "Age", "Libellé.de.la.commune")]
-  jeune_nom <- as.character(jeune[1, 1])
-  jeune_Age <- as.character(jeune[1, 2])
-  jeune_commune <- as.character(jeune[1, 3])
+  # Trouver l'élu le plus âgé
+  age_vieux <- max(df$Age, na.rm = TRUE)
+  nom_vieux <- df$Nom.de.l.élu[df$Age == age_vieux]
 
-  vieux <- x[which.max(x$Age), c("Nom.de.l.élu", "Age", "Libellé.de.la.commune")]
-  vieux_nom <- as.character(vieux[1, 1])
-  vieux_Age <- as.character(vieux[1, 2])
-  vieux_commune <- as.character(vieux[1, 3])
+  # Prendre le premier nom si plusieurs élus ont le même âge
+  if (length(nom_vieux) > 1) {
+    nom_vieux <- nom_vieux[1]
+  }
 
-  # Renvoie un df avec les moyennes par communes
-  moyenne_par_commune <- aggregate(Age ~ Libellé.de.la.commune, data = x, FUN = mean)
-  haute_moy_age <- moyenne_par_commune[which.max(moyenne_par_commune$Age),]
-  faible_moy_age <- moyenne_par_commune[which.min(moyenne_par_commune$Age),]
+  # Trouver l'élu le plus jeune
+  age_jeune <- min(df$Age, na.rm = TRUE)
+  nom_jeune <- df$Nom.de.l.élu[df$Age == age_jeune]
 
-  commune_haute <- x[grepl(haute_moy_age[1, 1], x$Libellé.de.la.commune), ]
-  distribution_age_haute <- calcul_distribution_age(commune_haute)
+  # Prendre le premier nom si plusieurs élus ont le même âge
+  if (length(nom_jeune) > 1) {
+    nom_jeune <- nom_jeune[1]
+  }
 
-  commune_faible <- x[grepl(faible_moy_age[1, 1], x$Libellé.de.la.commune), ]
-  distribution_age_faible <- calcul_distribution_age(commune_faible)
+  # Vérification avant return
+  print("Vérification des valeurs avant le return :")
+  print(nom_du_departement)
+  print(nbre_communes)
+  print(distribution_age)
+  print(nom_vieux)
+  print(age_vieux)
+  print(nom_jeune)
+  print(age_jeune)
 
-  # Affichage des résultats
-  cat("Nom du département:", nom_du_departement, "\n",
-      "Nombre de communes: ", nbre_communes, "\n",
-      "Nombre d'élus: ", Nbre_elu, "\n")
-
-  cat("Distribution des âges: ", "min", vect_distribution_age[1],
-      ", 25% à", vect_distribution_age[2],
-      ", 50% à", vect_distribution_age[3],
-      ", 75% à", vect_distribution_age[4],
-      ", 100% à", vect_distribution_age[5],"\n",
-      "le plus ancien:", vieux_nom, "\n", vieux_Age,"ans", "\n", vieux_commune, "\n",
-      "le plus récent:", jeune_nom, "\n", jeune_Age,"ans", "\n", jeune_commune, "\n")
-
-  cat("Commune avec plus haute moyenne d'âge: ",as.character(haute_moy_age[1, 1]), round(haute_moy_age[1, 2]), "ans", "\n",
-      "Distribution des âges: ", "min", distribution_age_haute[1],
-      ", 25% à", distribution_age_haute[2],
-      ", 50% à", distribution_age_haute[3],
-      ", 75% à", distribution_age_haute[4],
-      ", 100% à", distribution_age_haute[5],"\n")
-
-  cat("Commune avec plus faible moyenne d'âge: ",as.character(faible_moy_age[1, 1]), round(faible_moy_age[1, 2]), "ans", "\n",
-      "Distribution des âges: ", "min", distribution_age_faible[1],
-      ", 25% à", distribution_age_faible[2],
-      ", 50% à", distribution_age_faible[3],
-      ", 75% à", distribution_age_faible[4],
-      ", 100% à", distribution_age_faible[5],
-      "\n", "\n"
-  )
-
+  # Retourner sous forme de liste
+  return(list(
+    Departement = nom_du_departement,
+    Nombre_communes = nbre_communes,
+    Distribution_age = distribution_age,
+    Elu_plus_age = list(Nom = nom_vieux, Age = age_vieux),
+    Elu_plus_jeune = list(Nom = nom_jeune, Age = age_jeune)
+  ))
 }
