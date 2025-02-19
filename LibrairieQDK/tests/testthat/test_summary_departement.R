@@ -1,6 +1,6 @@
 library(testthat)
 
-test_that("summary.departement fonctionne avec une entrée valide", {
+test_that("summary_departement fonctionne avec une entrée valide", {
   df <- data.frame(
     Libellé.du.département = rep("Ile-de-France", 5),
     Libellé.de.la.commune = c("Paris", "Lyon", "Marseille", "Lille", "Bordeaux"),
@@ -10,5 +10,5 @@ test_that("summary.departement fonctionne avec une entrée valide", {
     stringsAsFactors = FALSE
   )
   df <- cbind(df, matrix(ncol = 11, nrow = 5))  # Pour avoir 16 colonnes
-  expect_output(summary.departement(df))
+  expect_output(summary_departement(df))
 })

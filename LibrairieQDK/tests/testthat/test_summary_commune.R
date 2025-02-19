@@ -1,6 +1,6 @@
 library(testthat)
 
-test_that("summary.commune fonctionne avec une entrée valide", {
+test_that("summary_commune fonctionne avec une entrée valide", {
   df <- data.frame(
     Libellé.de.la.commune = rep("Paris", 5),
     Libellé.de.la.fonction = c("Maire", "Adjoint", "Conseiller", "Maire", "Adjoint"),
@@ -10,5 +10,5 @@ test_that("summary.commune fonctionne avec une entrée valide", {
     stringsAsFactors = FALSE
   )
   df <- cbind(df, matrix(ncol = 11, nrow = 5))  # Pour avoir 16 colonnes
-  expect_output(summary.commune(df))
+  expect_output(summary_commune(df))
 })
