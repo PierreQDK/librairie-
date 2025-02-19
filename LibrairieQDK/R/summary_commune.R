@@ -20,51 +20,57 @@
 #' summary_commune(df_Nantes)
 #' summary_commune(df_Faverelles)
 summary_commune <- function(df) {
-  # Vérifier l'existence des colonnes essentielles
-  required_columns <- c("Date.de.naissance", "Nom.de.l.élu", "Libellé.de.la.commune")
-  if (!all(required_columns %in% colnames(df))) {
-    stop("Erreur: Une ou plusieurs colonnes requises sont absentes")
+  # Vérifier si la colonne Date.de.naissance existe
+  if (!"Date.de.naissance" %in% colnames(df)) {
+    stop("Erreur: La colonne 'Date.de.naissance' est absente.")
   }
 
-  # Vérifier si la colonne Date.de.naissance est vide après conversion
-  if (nrow(df) == 0 || all(is.na(df$Date.de.naissance))) {
-    stop("Erreur: Pas de dates valides dans la colonne 'Date.de.naissance'")
+  # Vérifier s'il y a des données
+  if (nrow(df) == 0) {
+    stop("Erreur: Aucune donnée disponible pour cette commune.")
   }
 
-  # Extraire les informations essentielles
+  # Extraire le nom de la commune
   nom_de_la_commune <- unique(df$Libellé.de.la.commune)
   if (length(nom_de_la_commune) > 1) {
-    stop("Erreur: Plusieurs communes détectées")
+    stop("Erreur: Plusieurs communes détectées.")
   }
 
   # Nombre d'élus
   Nbre_elu <- nrow(df)
 
+  # Conversion en format Date si ce n'est pas déjà fait
+  df$Date.de.naissance <- as.Date(df$Date.de.naissance, format = "%Y-%m-%d")
+
+  # Vérifier s'il y a des valeurs NA
+  if (all(is.na(df$Date.de.naissance))) {
+    stop("Erreur: Toutes les dates de naissance sont invalides.")
+  }
+
   # Calculer l'âge des élus
   df$Age <- as.numeric(Sys.Date() - df$Date.de.naissance) %/% 365  # Calcul de l'âge
+
+  # Vérifier la distribution des âges
   distribution_age <- quantile(df$Age, probs = c(0.25, 0.5, 0.75, 1), na.rm = TRUE)
 
   # Trouver l'élu le plus âgé
   age_vieux <- max(df$Age, na.rm = TRUE)
   nom_vieux <- df$Nom.de.l.élu[df$Age == age_vieux]
 
-  # Si plusieurs élus ont le même âge, en prendre un seul
+  # Prendre le premier nom si plusieurs élus ont le même âge
   if (length(nom_vieux) > 1) {
     nom_vieux <- nom_vieux[1]
   }
 
-  # Afficher les résultats
-  cat("Nom de la commune:", nom_de_la_commune, "\n")
-  cat("Nombre d'élus:", Nbre_elu, "\n")
-  cat("Distribution des âges:\n",
-      "  - 25% :", distribution_age[1], "\n",
-      "  - 50% :", distribution_age[2], "\n",
-      "  - 75% :", distribution_age[3], "\n",
-      "  - 100% :", distribution_age[4], "\n")
+  # Vérification avant le return
+  print("Vérification des valeurs avant le return :")
+  print(nom_de_la_commune)
+  print(Nbre_elu)
+  print(distribution_age)
+  print(nom_vieux)
+  print(age_vieux)
 
-  cat("Nom et âge de l'élu le plus âgé:", nom_vieux, "-", age_vieux, "ans\n")
-
-  # ✅ Retourner les informations sous forme de liste
+  # Retourner les informations sous forme de liste
   return(list(
     Commune = nom_de_la_commune,
     Nombre_elus = Nbre_elu,
