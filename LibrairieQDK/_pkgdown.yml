@@ -1,4 +1,24 @@
-url: ~
+url: https://PierreQDK.github.io/librairieQDK/
 template:
   bootstrap: 5
+  bootswatch: flatly  # Autre choix : cosmo, cerulean, united, journal...
+  theme: custom.scss
+  navbar:
+    structure:
+      left:  [reference, articles, news]
+      right: [search, github]
+    components:
+      github:
+        icon: fab fa-github
+        href: https://github.com/PierreQDK/librairieQDK
+  logo: "man/figures/logo.png"  # Assurez-vous d'avoir un logo à cet emplacement
 
+home:
+  title: "LibrairieQDK"
+  description: "Un package R pour l'analyse des données des élus."
+  sidebar:
+    structure: [links, license, citation, authors]
+    components:
+      authors:
+        title: "Développeur"
+        desc: "Pierre Quintin de Kercadio"
