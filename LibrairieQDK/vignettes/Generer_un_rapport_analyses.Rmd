@@ -177,10 +177,4 @@ Le rapport contiendra :
 - Des statistiques détaillées sur les élus.
 - Des graphiques pour illustrer les résultats.
 
-### Execution de generer_rapport
-```{r}
-# Générer un rapport pour la commune 44135 et le département 44
-generer_rapport("44135", "44", "rapport_commune.html")
-```
-
 Le fichier rapport_commune.html sera généré et contiendra toutes les analyses.
