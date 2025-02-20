@@ -35,7 +35,7 @@ generer_rapport <- function(commune, departement, output) {
       code_commune = commune,
       code_departement = departement
     ),
-    output_file = file.path(getwd(), output)
+    output_file = output
   )
 
 
