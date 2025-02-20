@@ -2,9 +2,8 @@
 % Please edit documentation in R/compter_nb_adjoints.R
 \name{compter_nombre_d_adjoints}
 \alias{compter_nombre_d_adjoints}
-\title{Une fonction pour compter le nombre d'adjoint dans une base de donnée
-Cette fonction calcule le nombre d'élus ayant la fonction d'adjoint
-dans un data frame contenant des informations sur les élus municipaux.}
+\title{Cette fonction calcule le nombre d'élus ayant la fonction d'adjoint
+dans un data frame contenant des informations sur les élus municipaux}
 \usage{
 compter_nombre_d_adjoints(df)
 }
@@ -18,9 +17,8 @@ compter_nombre_d_adjoints(df)
 Un entier représentant le nombre d'élus ayant une fonction contenant le mot "adjoint".
 }
 \description{
-Une fonction pour compter le nombre d'adjoint dans une base de donnée
 Cette fonction calcule le nombre d'élus ayant la fonction d'adjoint
-dans un data frame contenant des informations sur les élus municipaux.
+dans un data frame contenant des informations sur les élus municipaux
 }
 \examples{
 # Exemple avec une liste de data frames représentant plusieurs communes
