@@ -7,21 +7,36 @@
 #' @return Aucun retour. Le rapport est généré et sauvegardé à l'emplacement spécifié.
 #'
 #' @export
-generer_rapport <- function(commune, departement, output) {
-  # Charger le fichier .qmd depuis le dossier 'inst'
-  rapport_template <- system.file("inst", "Rapport.qmd", package = "LibrairieQDK")
 
-  # Vérification de la présence du fichier .qmd
-  if (rapport_template == "") {
-    stop("Le fichier rapport.qmd n'a pas été trouvé dans le dossier inst.")
+generer_rapport <- function(commune, departement, output) {
+  # Vérifier que Quarto est installé
+  if (!requireNamespace("quarto", quietly = TRUE)) {
+    stop("Le package 'quarto' doit être installé pour générer le rapport.")
   }
 
-  # Paramétrer les valeurs pour la génération du rapport
-  params <- list(commune = commune, departement = departement)
+  # Localisation du fichier Quarto dans le package
+  rapport_path <- system.file("Rapport.qmd", package = "LibrairieQDK")
 
-  # Utiliser Quarto pour compiler le rapport
-  quarto::quarto_render(rapport_template, output_file = output, params = params)
+  if (rapport_path == "") {
+    stop("Le fichier rapport.qmd est introuvable dans le package.")
+  }
 
-  # Message de confirmation
-  message("Le rapport a été généré et sauvegardé dans : ", output)
+  # Création d'un fichier temporaire pour stocker le rapport
+  temp_report <- tempfile(fileext = ".qmd")
+
+  # Copier le fichier modèle vers le fichier temporaire
+  file.copy(rapport_path, temp_report, overwrite = TRUE)
+
+  # Génération du rapport avec Quarto
+  quarto::quarto_render(
+    input = temp_report,
+    output_format = "html",
+    execute_params = list(
+      code_commune = commune,
+      code_departement = departement
+    ),
+    output_file = output
+  )
+
+  message("Le rapport a été généré avec succès : ", output)
 }
