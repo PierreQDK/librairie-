@@ -29,14 +29,15 @@ generer_rapport <- function(commune, departement, output) {
 
   # Génération du rapport avec Quarto
   quarto::quarto_render(
-    input = temp_report,
+    input = system.file("inst/Rapport.qmd", package = "LibrairieQDK"),
     output_format = "html",
     execute_params = list(
       code_commune = commune,
       code_departement = departement
     ),
-    output_file = output
+    output_file = file.path(getwd(), output)
   )
+
 
   message("Le rapport a été généré avec succès : ", output)
 }
