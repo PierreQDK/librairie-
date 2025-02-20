@@ -1,8 +1,9 @@
 url: https://PierreQDK.github.io/librairieQDK/
 template:
+  template:
   bootstrap: 5
-  bootswatch: flatly  # Autre choix : cosmo, cerulean, united, journal...
-  theme: custom.scss
+  bootswatch: flatly
+  theme: pkgdown/custom.scss
   navbar:
     structure:
       left:  [reference, articles, news]
