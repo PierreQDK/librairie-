@@ -109,7 +109,7 @@ Elle affiche :
 ### Exécution de summary_departement()
 
 ```{r}
-# Création d'un exemple de jeu de données pour un département
+# Création d'un jeu de données d'exemple
 df_exemple_departement <- data.frame(
   Libellé.du.département = rep("Loire-Atlantique", 10),
   Libellé.de.la.commune = c("Nantes", "Saint-Nazaire", "Rezé", "Orvault", "Carquefou", 
@@ -123,16 +123,46 @@ df_exemple_departement <- data.frame(
 
 # Exécution de la fonction
 summary_departement(df_exemple_departement)
+
 ```
+
+
+Le résultat attendu est : 
+
+$Departement
+[1] "Loire-Atlantique"
+
+$Nombre_communes
+[1] 10
+
+$Distribution_age
+   25%   50%   75%  100% 
+  38.0  52.0  63.5  78.0 
+
+$Elu_plus_age
+$Elu_plus_age$Nom
+[1] "Pasteur"
+
+$Elu_plus_age$Age
+[1] 78
+
+$Elu_plus_jeune
+$Elu_plus_jeune$Nom
+[1] "Flaubert"
+
+$Elu_plus_jeune$Age
+[1] 23
 
 **Interprétation :**
 
-- Ce département contient 10 communes.
-- L’élu le plus âgé a 78 ans, et l’élu le plus jeune 23 ans.
-- La médiane d’âge des élus est de 52 ans.
+- Le département étudié est Loire-Atlantique.
+- Il contient 10 communes différentes.
+- L’élu le plus âgé est Pasteur (78 ans).
+- L’élu le plus jeune est Flaubert (23 ans).
+- La médiane d’âge des élus est 52 ans.
 
-
-
+La fonction summary_departement() est un outil permettant d’analyser la répartition des élus dans un département.
+Elle permet une analyse rapide et détaillée sur le nombre de communes représentées et la structure démographique des élus.
 
 
 # Génération d’un Rapport Quarto
@@ -143,7 +173,14 @@ La fonction generer_rapport() permet de générer un rapport interactif en HTML 
 
 Le rapport contiendra : 
 
-- Unrésumé des élus de la commune et du département.
+- Un résumé des élus de la commune et du département.
 - Des statistiques détaillées sur les élus.
 - Des graphiques pour illustrer les résultats.
 
+### Execution de generer_rapport
+```{r}
+# Générer un rapport pour la commune 44135 et le département 44
+generer_rapport("44135", "44", "rapport_commune.html")
+```
+
+Le fichier rapport_commune.html sera généré et contiendra toutes les analyses.

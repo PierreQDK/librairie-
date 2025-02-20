@@ -15,7 +15,7 @@ generer_rapport <- function(commune, departement, output) {
   }
 
   # Localisation du fichier Quarto dans le package
-  rapport_path <- system.file("inst/Rapport.qmd", package = "LibrairieQDK")
+  rapport_path <- system.file("Rapport.qmd", package = "LibrairieQDK")
 
   if (rapport_path == "") {
     stop("Le fichier rapport.qmd est introuvable dans le package.")
