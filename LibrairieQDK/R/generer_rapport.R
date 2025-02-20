@@ -5,7 +5,7 @@
 #' @param output Le chemin complet du fichier où le rapport sera enregistré.
 #'
 #' @return Aucun retour. Le rapport est généré et sauvegardé à l'emplacement spécifié.
-#'
+#' @importFrom quarto quarto_render
 #' @export
 
 generer_rapport <- function(commune, departement, output) {
