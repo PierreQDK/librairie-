@@ -1,8 +1,9 @@
 ---
-title: "Rapport.qmd"
+title: "Rapport d'analyse"
 format: html
 editor: visual
 author: Pierre QDK
+execute: true
 params:
   code_commune: "44135"
   code_departement: "44"
