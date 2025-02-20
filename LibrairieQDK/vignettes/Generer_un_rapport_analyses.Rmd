@@ -1,0 +1,67 @@
+---
+title: "Générer un rapport d'analyses"
+author: "Pierre QUINTIN de KERCADIO"
+format: html
+vignette: >
+  %\VignetteIndexEntry{Générer un rapport d'analyses}
+  %\VignetteEngine{quarto}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+##Introduction
+
+Le package LibrairieQDK permet d’analyser les données des élus français à travers plusieurs fonctions.
+
+Cette vignette détaille l’utilisation de trois fonctions  :
+
+📌 summary_commune(): pour obtenir un résumé des élus d’une commune.
+📌 summary_departement(): pour analyser les élus d’un département.
+📌 generer_rapport(): pour générer un rapport HTML complet avec Quarto.
+
+
+
+## Installation et Chargement du Package
+```{r setup}
+library(LibrairieQDK)
+```
+
+
+## Résumé des Informations d’une Commune
+
+# Fonction summary_commune(df)
+
+La fonction summary_commune() permet d’obtenir un résumé des élus d’une commune.
+
+Elle affiche :
+
+- Le nom de la commune
+- Le nombre total d’élus
+- La distribution des âges des élus (quartiles)
+- L’élu le plus âgé
+
+Pour exécuter summary_commune(), voici un exemple avec la commune "Nantes" :
+
+```{r}
+# Création d'un exemple de jeu de données pour un département
+df_exemple_departement <- data.frame(
+  Libellé.du.département = rep("Loire-Atlantique", 10),
+  Libellé.de.la.commune = c("Nantes", "Saint-Nazaire", "Rezé", "Orvault", "Carquefou", 
+                             "Pornic", "Châteaubriant", "La Baule", "Savenay", "Guérande"),
+  Nom.de.l.élu = c("Jean Dupont", "Marie Curie", "Albert Camus", "Simone Veil", 
+                   "Victor Hugo", "Molière", "Pasteur", "Flaubert", "Balzac", "Rousseau"),
+  Date.de.naissance = as.Date(c("1960-05-15", "1975-08-20", "1982-03-10", "1950-11-25",
+                                "1990-07-01", "1988-02-12", "1945-06-30", "2000-10-05",
+                                "1985-11-12", "1978-03-22"))
+)
+
+# Exécution de la fonction
+summary_departement(df_exemple_departement)
+
+```
+
