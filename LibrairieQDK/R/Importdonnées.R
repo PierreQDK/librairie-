@@ -1,6 +1,6 @@
 library(usethis)
 
-elus_data <- readr::read_delim("/Users/pierrequintindekercadio/Documents/librairie/librairie/elus_sample.csv")
+elus_data <- readr::read_delim("/Users/pierrequintindekercadio/Documents/Documents - Mac/Librairieqdk/elus_sample.csv")
 
 usethis::use_data(elus_data, overwrite = TRUE)
 
