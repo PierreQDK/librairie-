@@ -2,6 +2,7 @@
 title: "Générer un rapport d'analyses"
 author: "Pierre QUINTIN de KERCADIO"
 format: html
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Générer un rapport d'analyses}
   %\VignetteEngine{quarto}
@@ -14,14 +15,17 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-##Introduction
+
+# Introduction
 
 Le package LibrairieQDK permet d’analyser les données des élus français à travers plusieurs fonctions.
 
 Cette vignette détaille l’utilisation de trois fonctions  :
 
 📌 summary_commune(): pour obtenir un résumé des élus d’une commune.
+
 📌 summary_departement(): pour analyser les élus d’un département.
+
 📌 generer_rapport(): pour générer un rapport HTML complet avec Quarto.
 
 
@@ -59,26 +63,6 @@ df_exemple_commune <- data.frame(
 summary_commune(df_exemple_commune)
 
 ```
-
-Le résultat attendu dans la consolme est : 
-
-$Commune
-[1] "Nantes"
-
-$Nombre_elus
-[1] 5
-
-$Distribution_age
-   25%   50%   75%  100% 
-  41.0  55.0  63.5  73.0 
-
-$Elu_plus_age
-$Elu_plus_age$Nom
-[1] "Simone Veil"
-
-$Elu_plus_age$Age
-[1] 73
-
 
 **Interprétation des résultats :**
 - La commune étudiée est Nantes.
@@ -125,33 +109,6 @@ df_exemple_departement <- data.frame(
 summary_departement(df_exemple_departement)
 
 ```
-
-
-Le résultat attendu est : 
-
-$Departement
-[1] "Loire-Atlantique"
-
-$Nombre_communes
-[1] 10
-
-$Distribution_age
-   25%   50%   75%  100% 
-  38.0  52.0  63.5  78.0 
-
-$Elu_plus_age
-$Elu_plus_age$Nom
-[1] "Pasteur"
-
-$Elu_plus_age$Age
-[1] 78
-
-$Elu_plus_jeune
-$Elu_plus_jeune$Nom
-[1] "Flaubert"
-
-$Elu_plus_jeune$Age
-[1] 23
 
 **Interprétation :**
 

@@ -1,25 +1,51 @@
-url: https://PierreQDK.github.io/librairieQDK/
+url: https://github.com/ton-repo/LibrairieQDK
 template:
-  template:
   bootstrap: 5
-  bootswatch: flatly
-  theme: pkgdown/custom.scss
-  navbar:
-    structure:
-      left:  [reference, articles, news]
-      right: [search, github]
-    components:
-      github:
-        icon: fab fa-github
-        href: https://github.com/PierreQDK/librairieQDK
-  logo: "man/figures/logo.png"  # Assurez-vous d'avoir un logo à cet emplacement
+  bootswatch: flatly  # Change le thème pour un design plus moderne
+  includes:
+    in_header: "pkgdown/extra_header.html"
+
+navbar:
+  structure:
+    left: [home, reference, articles, news]
+    right: [search, github]
+  components:
+    home:
+      text: "Accueil"
+      href: index.html
+    reference:
+      text: "Référence"
+      href: reference/index.html
+    articles:
+      text: "Articles"
+      href: articles/index.html
+    github:
+      icon: "fab fa-github"
+      href: https://github.com/ton-repo/LibrairieQDK
+      aria-label: "Lien vers le dépôt GitHub"
+
+articles:
+  - title: "Générer un rapport d'analyses"
+    contents:
+      - Generer_un_rapport_analyses
 
 home:
-  title: "LibrairieQDK"
-  description: "Un package R pour l'analyse des données des élus."
   sidebar:
-    structure: [links, license, citation, authors]
+    structure: [license, citation, authors]
     components:
+      license:
+        title: "License"
+        text: "GPL-3"
+        href: https://www.gnu.org/licenses/gpl-3.0.fr.html
+      citation:
+        title: "Citation"
+        text: "Citing LibrairieQDK"
+        href: https://github.com/ton-repo/LibrairieQDK
       authors:
-        title: "Développeur"
-        desc: "Pierre Quintin de Kercadio"
+        title: "Developers"
+        text: |
+          **Pierre Quintin de Kercadio**
+          Publication : 2025
+          pierre.quintindekercadio@gmail.com
+
+custom_css: pkgdown/custom.scss

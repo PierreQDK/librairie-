@@ -1,6 +1,5 @@
-#' Une fonction pour compter le nombre d'adjoint dans une base de donnée
 #' Cette fonction calcule le nombre d'élus ayant la fonction d'adjoint
-#' dans un data frame contenant des informations sur les élus municipaux.
+#' dans un data frame contenant des informations sur les élus municipaux
 #'
 #' @param df Un data frame contenant au minimum la colonne :
 #' - `Libellé.de.la.fonction` (qui indique la fonction de l'élu).
