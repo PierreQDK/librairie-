@@ -32,9 +32,9 @@ library(LibrairieQDK)
 ```
 
 
-## Résumé des Informations d’une Commune
+# Résumé des Informations d’une Commune
 
-# Fonction summary_commune(df)
+## Fonction summary_commune(df)
 
 La fonction summary_commune() permet d’obtenir un résumé des élus d’une commune.
 
@@ -42,10 +42,71 @@ Elle affiche :
 
 - Le nom de la commune
 - Le nombre total d’élus
-- La distribution des âges des élus (quartiles)
+- La distribution des âges des élus (par quartiles)
 - L’élu le plus âgé
 
-Pour exécuter summary_commune(), voici un exemple avec la commune "Nantes" :
+
+### Execution de summary_commune()
+```{r}
+# Création d'un exemple de jeu de données pour une commune
+df_exemple_commune <- data.frame(
+  Libellé.de.la.commune = rep("Nantes", 5),
+  Nom.de.l.élu = c("Jean Dupont", "Marie Curie", "Albert Camus", "Simone Veil", "Victor Hugo"),
+  Date.de.naissance = as.Date(c("1960-05-15", "1975-08-20", "1982-03-10", "1950-11-25", "1990-07-01"))
+)
+
+# Exécution de la fonction
+summary_commune(df_exemple_commune)
+
+```
+
+Le résultat attendu dans la consolme est : 
+
+$Commune
+[1] "Nantes"
+
+$Nombre_elus
+[1] 5
+
+$Distribution_age
+   25%   50%   75%  100% 
+  41.0  55.0  63.5  73.0 
+
+$Elu_plus_age
+$Elu_plus_age$Nom
+[1] "Simone Veil"
+
+$Elu_plus_age$Age
+[1] 73
+
+
+**Interprétation des résultats :**
+- La commune étudiée est Nantes.
+- Il y a 5 élus dans cette commune.
+- La médiane d’âge des élus est 55 ans.
+- L’élu le plus âgé est Simone Veil, âgée de 73 ans.
+
+
+La fonction summary_commune() est par conséquent un outil permettant d’obtenir un résumé clair et détaillé des élus d’une commune.
+
+Elle permet une analyse rapide et visuelle des caractéristiques principales de la population élue locale.
+
+
+
+# Résumé des Informations d'un département
+
+## Fonction summary_departement(df)
+
+La fonction summary_departement() offre une vue d’ensemble des élus d’un département.
+
+Elle affiche :
+
+- Le nom du département
+- Le nombre total de communes
+- La distribution des âges des élus (par quartiles)
+- L’élu le plus âgé et l’élu le plus jeune
+
+### Exécution de summary_departement()
 
 ```{r}
 # Création d'un exemple de jeu de données pour un département
@@ -62,6 +123,27 @@ df_exemple_departement <- data.frame(
 
 # Exécution de la fonction
 summary_departement(df_exemple_departement)
-
 ```
+
+**Interprétation :**
+
+- Ce département contient 10 communes.
+- L’élu le plus âgé a 78 ans, et l’élu le plus jeune 23 ans.
+- La médiane d’âge des élus est de 52 ans.
+
+
+
+
+
+# Génération d’un Rapport Quarto
+
+## Fonction generer_rapport(commune, departement, output)
+
+La fonction generer_rapport() permet de générer un rapport interactif en HTML avec Quarto.
+
+Le rapport contiendra : 
+
+- Unrésumé des élus de la commune et du département.
+- Des statistiques détaillées sur les élus.
+- Des graphiques pour illustrer les résultats.
 

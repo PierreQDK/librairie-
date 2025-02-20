@@ -8,7 +8,7 @@
 
 <meta name="author" content="Pierre QDK">
 
-<title>Rapport.qmd</title>
+<title>Rapport d’analyse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Rapport.qmd</h1>
+<h1 class="title">Rapport d’analyse</h1>
 </div>
 
 
@@ -122,14 +122,17 @@ xfun     (0.50  -&gt; 0.51 ) [CRAN]</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/p0/3rkkfb2j3137v01dmkrd3tx40000gn/T//Rtmp5HtHt5/downloaded_packages
+    /var/folders/p0/3rkkfb2j3137v01dmkrd3tx40000gn/T//Rtmp7H2V7Y/downloaded_packages
 ── R CMD build ─────────────────────────────────────────────────────────────────
-* checking for file ‘/private/var/folders/p0/3rkkfb2j3137v01dmkrd3tx40000gn/T/Rtmp5HtHt5/remotes13ff2218f25f/PierreQDK-librairie--299580a/LibrairieQDK/DESCRIPTION’ ... OK
+* checking for file ‘/private/var/folders/p0/3rkkfb2j3137v01dmkrd3tx40000gn/T/Rtmp7H2V7Y/remotes1c5539167162/PierreQDK-librairie--e233209/LibrairieQDK/DESCRIPTION’ ... OK
 * preparing ‘LibrairieQDK’:
 * checking DESCRIPTION meta-information ... OK
 * checking for LF line-endings in source and make files and shell scripts
 * checking for empty or unneeded directories
-* building ‘LibrairieQDK_0.1.0.tar.gz’</code></pre>
+* building ‘LibrairieQDK_0.1.0.tar.gz’
+Warning in utils::tar(filepath, pkgname, compression = compression, compression_level = 9L,  :
+  storing paths of more than 100 bytes is not portable:
+  ‘LibrairieQDK/inst/Rapport_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css’</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chargement des bibliothèques</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(LibrairieQDK)</span>

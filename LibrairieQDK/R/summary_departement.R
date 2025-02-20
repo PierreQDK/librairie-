@@ -1,21 +1,46 @@
-#' Une fonction pour avoir un résumé des informations d'un département
+#' Résumé des informations d'un département
 #'
-#' Cette fonction génère un graphique en barres horizontales illustrant
-#' la répartition des élus selon leur catégorie socio-professionnelle
-#' pour un département donné.
+#' Cette fonction affiche un résumé des caractéristiques principales
+#' d'un département donné, notamment son nom, le nombre de communes,
+#' la distribution des âges des élus, l'élu le plus âgé et l'élu le plus jeune.
 #'
-#' @param df Un data frame contenant les informations des élus, incluant
-#' les colonnes `Libellé.du.département`, `Libellé.de.la.commune`,
-#' et `Code.de.la.catégorie.socio.professionnelle`.
+#' @param df Un `data.frame` contenant les informations des élus du département.
+#' Il doit inclure les colonnes `Libellé.du.département`, `Libellé.de.la.commune`,
+#' `Nom.de.l.élu` et `Date.de.naissance`.
 #'
-#' @return Un graphique en barres représentant les 10 catégories socio-professionnelles
-#' les plus fréquentes parmi les élus du département.
-#' @export
-#' @import dplyr ggplot2
+#' @return Une liste contenant :
+#' \itemize{
+#'   \item \strong{Departement} : Nom du département analysé.
+#'   \item \strong{Nombre_communes} : Nombre total de communes dans le département.
+#'   \item \strong{Distribution_age} : Quartiles de la distribution des âges des élus.
+#'   \item \strong{Elu_plus_age} : Liste contenant le nom et l'âge de l'élu le plus âgé.
+#'   \item \strong{Elu_plus_jeune} : Liste contenant le nom et l'âge de l'élu le plus jeune.
+#' }
+#'
+#' @details
+#' La fonction commence par vérifier que les colonnes requises existent et que les
+#' données sont valides. Elle extrait ensuite le nom du département et le nombre de
+#' communes. Les âges des élus sont calculés à partir de leur date de naissance,
+#' et leur distribution est obtenue via les quartiles. Enfin, les élus les plus âgés
+#' et les plus jeunes sont identifiés.
+#'
 #' @examples
-#' # Exemple avec un jeu de données spécifique
-#' plot_departement(df_Loire_Atlantique)
-#' plot_departement(df_Gers)
+#' # Exemple de jeu de données
+#' df_exemple <- data.frame(
+#'   Libellé.du.département = rep("Loire-Atlantique", 10),
+#'   Libellé.de.la.commune = c("Nantes", "Saint-Nazaire", "Rezé", "Orvault", "Carquefou",
+#'                              "Pornic", "Châteaubriant", "La Baule", "Savenay", "Guérande"),
+#'   Nom.de.l.élu = c("Jean Dupont", "Marie Curie", "Albert Camus", "Simone Veil",
+#'                    "Victor Hugo", "Molière", "Pasteur", "Flaubert", "Balzac", "Rousseau"),
+#'   Date.de.naissance = as.Date(c("1960-05-15", "1975-08-20", "1982-03-10", "1950-11-25",
+#'                                 "1990-07-01", "1988-02-12", "1945-06-30", "2000-10-05",
+#'                                 "1985-11-12", "1978-03-22"))
+#' )
+#'
+#' # Exécution de la fonction
+#' summary_departement(df_exemple)
+#'
+#' @export
 
 summary_departement <- function(df) {
   # Vérification de l'existence de la colonne "Date.de.naissance"
