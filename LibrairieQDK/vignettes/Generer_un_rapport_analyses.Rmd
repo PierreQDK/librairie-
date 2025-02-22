@@ -1,13 +1,15 @@
 ---
 title: "Générer un rapport d'analyses"
-author: "Pierre QUINTIN de KERCADIO"
+author: "Pierre Quintin de Kercadio"
 format: html
-output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Générer un rapport d'analyses}
   %\VignetteEngine{quarto}
-  %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{Générer un rapport d'analyses}
+editor_options: 
+  chunk_output_type: console
 ---
+
+
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -65,10 +67,10 @@ summary_commune(df_exemple_commune)
 ```
 
 **Interprétation des résultats :**
+
 - La commune étudiée est Nantes.
 - Il y a 5 élus dans cette commune.
-- La médiane d’âge des élus est 55 ans.
-- L’élu le plus âgé est Simone Veil, âgée de 73 ans.
+- L’élu le plus âgé est Simone Veil, âgée de 74 ans.
 
 
 La fonction summary_commune() est par conséquent un outil permettant d’obtenir un résumé clair et détaillé des élus d’une commune.
@@ -116,7 +118,6 @@ summary_departement(df_exemple_departement)
 - Il contient 10 communes différentes.
 - L’élu le plus âgé est Pasteur (78 ans).
 - L’élu le plus jeune est Flaubert (23 ans).
-- La médiane d’âge des élus est 52 ans.
 
 La fonction summary_departement() est un outil permettant d’analyser la répartition des élus dans un département.
 Elle permet une analyse rapide et détaillée sur le nombre de communes représentées et la structure démographique des élus.

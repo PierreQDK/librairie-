@@ -14,7 +14,7 @@ navbar:
       text: "Accueil"
       href: index.html
     reference:
-      text: "Référence"
+      text: "Références"
       href: reference/index.html
     articles:
       text: "Articles"
