@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages 🚀
 on:
   push:
     branches:
-      - main  # Exécuter le workflow uniquement quand on pousse sur "main"
+      - gh-pages  # Exécuter le workflow uniquement quand on pousse sur "gh-pages"
 
 jobs:
   build-deploy:
@@ -32,5 +32,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
-          publish_branch: gh-pages  # On pousse sur "gh-pages" pour GitHub Pages
-
+          publish_branch: gh-pages  # On pousse le site sur la branche "gh-pages"
