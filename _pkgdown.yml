@@ -1,4 +1,5 @@
 url: https://pierreqdk.github.io/librairie-/
 template:
   bootstrap: 5
+  bootswatch: flatly
 

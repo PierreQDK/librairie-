@@ -1,48 +1,70 @@
-// Personnalisation des couleurs et polices
-body {
-  font-family: "Arial", sans-serif;
+/* Conteneur principal */
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
   background-color: #f8f9fa;
 }
 
-.navbar {
-  background-color: #0073e6 !important;
+/* Contenu principal */
+.main-content {
+  flex: 3;
+  margin-right: 30px;
+  font-family: 'Arial', sans-serif;
 }
 
-h1, h2, h3 {
-  color: #0073e6;
+h1 {
+  font-size: 2.5em;
+  color: #34495e; /* Gris foncé pour le titre */
+  margin-bottom: 20px;
 }
 
-// Personnalisation du sidebar
-.sidebar {
-  background: #e3f2fd;
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li {
+  margin-bottom: 20px;
+  font-size: 1.2em;
+  background-color: #2980b9; /* Bleu clair pour les bulles */
+  color: white;
   padding: 15px;
-  border-radius: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-// Style des boutons et liens
-.btn, a {
+/* Barre latérale */
+.sidebar {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 20px;
   border-radius: 8px;
-  transition: 0.3s;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.btn:hover, a:hover {
-  background-color: #005bb5;
-  color: white;
+.sidebar p {
+  font-size: 1.1em;
+  color: #2c3e50; /* Gris foncé pour les paragraphes */
 }
 
-// Footer
-footer {
-  background-color: #0073e6;
-  color: white;
-  padding: 10px;
-  text-align: center;
+strong {
   font-weight: bold;
 }
 
-.content {
-  border: 2px solid #0073e6;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: #f8f9fa;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+.sidebar a {
+  color: #2980b9; /* Bleu clair pour les liens */
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+
+/* Ajout d'une bordure autour des blocs */
+ul li, .sidebar p {
+  border: 1px solid #e1e1e1;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #ecf0f1; /* Gris clair pour le fond */
 }
