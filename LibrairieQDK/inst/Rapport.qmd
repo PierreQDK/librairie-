@@ -1,0 +1,156 @@
+---
+title: "Rapport d'analyse"
+format: html
+editor: visual
+author: Pierre QDK
+params:
+  code_commune: "44135"
+  code_departement: "44"
+---
+
+```{r}
+# Installation des dépendances nécessaires
+remotes::install_github("PierreQDK/librairie-", subdir = "LibrairieQDK", force = TRUE)
+
+# Chargement des bibliothèques
+library(LibrairieQDK)
+library(tidyverse)
+library(ggplot2)
+
+```
+
+```{r}
+# Définition des paramètres de la commune et du département
+commune_code <- as.character(params$code_commune)
+departement_code <- as.character(params$code_departement)
+
+```
+
+```{r}
+# Vérification des colonnes et conversion des types de données
+#print(colnames(elus_data))
+elus_data[["Code de la commune"]] <- as.character(elus_data[["Code de la commune"]])
+elus_data[["Code du département"]] <- as.character(elus_data[["Code du département"]])
+
+# Affichage des valeurs uniques pour la commune et le département
+#print(unique(elus_data[["Code de la commune"]]))  
+#print(unique(elus_data[["Code du département"]]))  
+
+```
+
+```{r}
+# Filtrage des données pour la commune et le département spécifiés
+commune_data <- elus_data[elus_data[["Code de la commune"]] == commune_code, ]
+departement_data <- elus_data[elus_data[["Code du département"]] == departement_code, ]
+
+# Vérification de l'existence des données
+if (nrow(commune_data) == 0) stop("Aucune donnée trouvée pour la commune.")
+if (nrow(departement_data) == 0) stop("Aucune donnée trouvée pour le département.")
+
+```
+
+```{r}
+# Nettoyage des noms de colonnes dans les données de la commune
+colnames(commune_data) <- gsub(" ", ".", colnames(commune_data))
+colnames(commune_data) <- gsub("'", ".", colnames(commune_data))
+colnames(commune_data) <- gsub("-", ".", colnames(commune_data))
+
+```
+
+```{r}
+# Vérification et extraction du nom de la commune
+if (!"Libellé.de.la.commune" %in% colnames(commune_data)) {
+  stop("Erreur : La colonne 'Libellé.de.la.commune' est introuvable.")
+}
+nom_de_la_commune <- unique(commune_data$Libellé.de.la.commune)
+
+# Vérification du nombre de communes trouvées
+if (length(nom_de_la_commune) > 1) stop("Erreur : Plusieurs communes détectées.")
+nom_de_la_commune <- as.character(nom_de_la_commune)
+
+# Affichage des informations sur la commune
+#print(colnames(commune_data))
+print(class(nom_de_la_commune))
+print(length(nom_de_la_commune))
+cat("Nom de la commune:", nom_de_la_commune, "\n")
+
+```
+
+```{r}
+# Vérification et conversion des dates de naissance pour la commune
+#print(unique(commune_data$Date.de.naissance))  # Vérifier le format des dates
+sum(is.na(commune_data$Date.de.naissance))  # Nombre de NA avant conversion
+
+commune_data$Date.de.naissance <- as.Date(
+  commune_data$Date.de.naissance, 
+  tryFormats = c("%d/%m/%Y", "%Y-%m-%d")
+)
+
+```
+
+```{r}
+# Exécution de summary_commune() pour obtenir un résumé des données de la commune
+commune_summary <- summary_commune(commune_data)
+print(commune_summary)
+
+# Conversion de la catégorie socio-professionnelle en facteur
+commune_data$Code.de.la.catégorie.socio.professionnelle <- as.factor(commune_data$Code.de.la.catégorie.socio.professionnelle)
+
+# Génération et affichage du graphique de la commune
+commune_plot <- plot_commune(commune_data)
+print(commune_plot)
+
+```
+
+```{r}
+# Nettoyage des noms de colonnes pour les données du département
+colnames(departement_data) <- gsub(" ", ".", colnames(departement_data))
+colnames(departement_data) <- gsub("'", ".", colnames(departement_data))
+colnames(departement_data) <- gsub("-", ".", colnames(departement_data))
+
+```
+
+```{r}
+# Vérification et conversion des dates de naissance pour le département
+#print(unique(departement_data$Date.de.naissance))  # Vérifier le format des dates
+sum(is.na(departement_data$Date.de.naissance))  # Nombre de NA avant conversion
+
+departement_data$Date.de.naissance <- as.Date(
+  departement_data$Date.de.naissance, 
+  tryFormats = c("%d/%m/%Y", "%Y-%m-%d")
+)
+
+```
+
+```{r}
+# Extraction du nom du département
+nom_du_departement <- unique(departement_data$Libellé.du.département)
+
+# Vérification qu'un seul département est trouvé
+if (length(nom_du_departement) > 1) {
+  stop("Erreur : Plusieurs départements détectés, vérifiez votre filtrage.")
+}
+
+# Conversion en texte si nécessaire
+nom_du_departement <- as.character(nom_du_departement[1])
+
+# Affichage des informations sur le département
+print(class(nom_du_departement))  # Devrait afficher "character"
+print(length(nom_du_departement))  # Devrait afficher 1
+cat("Nom du département:", nom_du_departement, "\n")
+
+```
+
+```{r}
+# Exécution de summary_departement() pour obtenir un résumé des données du département
+departement_summary <- summary_departement(departement_data)
+print(departement_summary)
+
+# Conversion de la catégorie socio-professionnelle en facteur pour le département
+departement_data$Code.de.la.catégorie.socio.professionnelle <- as.factor(departement_data$Code.de.la.catégorie.socio.professionnelle)
+
+# Génération et affichage du graphique du département
+departement_plot <- plot_departement(departement_data)
+print(departement_plot)
+
+```
