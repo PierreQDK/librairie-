@@ -1,7 +1,7 @@
 url: https://github.com/ton-repo/LibrairieQDK
 template:
   bootstrap: 5
-  bootswatch: flatly  # Change le thème pour un design plus moderne
+  bootswatch: flatly
   includes:
     in_header: "pkgdown/extra_header.html"
 
