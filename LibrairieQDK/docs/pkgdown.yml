@@ -1,0 +1,9 @@
+pandoc: '3.2'
+pkgdown: 2.1.1
+pkgdown_sha: ~
+articles:
+  Generer_un_rapport_analyses: Generer_un_rapport_analyses.html
+last_built: 2025-02-24T13:00Z
+urls:
+  reference: https://pierreqdk.github.io/librairie-/reference
+  article: https://pierreqdk.github.io/librairie-/articles
