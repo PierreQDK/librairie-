@@ -229,21 +229,31 @@ structure démographique des élus.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="génération-dun-rapport-quarto">Génération d’un Rapport Quarto<a class="anchor" aria-label="anchor" href="#g%C3%A9n%C3%A9ration-dun-rapport-quarto"></a>
+<h2 id="génération-automatique-dun-rapport-html">Génération Automatique d’un Rapport HTML<a class="anchor" aria-label="anchor" href="#g%C3%A9n%C3%A9ration-automatique-dun-rapport-html"></a>
 </h2>
 <div class="section level3">
-<h3 id="fonction-generer_rapportcommune-departement-output">Fonction generer_rapport(commune, departement, output)<a class="anchor" aria-label="anchor" href="#fonction-generer_rapportcommune-departement-output"></a>
+<h3 id="fonction-generer_rapportcommune-departement-output">Fonction : generer_rapport(commune, departement, output)<a class="anchor" aria-label="anchor" href="#fonction-generer_rapportcommune-departement-output"></a>
 </h3>
-<p>La fonction generer_rapport() permet de générer un rapport interactif
-en HTML avec Quarto.</p>
-<p>Le rapport contiendra :</p>
+<p>Description :</p>
+<p>Cette fonction génère un rapport Quarto au format HTML contenant
+:</p>
 <ul>
-<li>Un résumé des élus de la commune et du département.</li>
-<li>Des statistiques détaillées sur les élus.</li>
-<li>Des graphiques pour illustrer les résultats.</li>
+<li><p>Une analyse des élus d’une commune et d’un département.</p></li>
+<li><p>Des statistiques détaillées.</p></li>
+<li><p>Des graphiques pour visualiser les résultats.</p></li>
 </ul>
-<p>Le fichier rapport_commune.html sera généré et contiendra toutes les
-analyses.</p>
+<p>Arguments :</p>
+<ul>
+<li><p>commune : Code de la commune à analyser.</p></li>
+<li><p>departement : Code du département à analyser.</p></li>
+<li><p>output : Nom du fichier de sortie.</p></li>
+</ul>
+<p>Exemple d’utilisation</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#generer_rapport(commune = "Nantes", departement = "Loire-Atlantique", output = "rapport_nantes.html")</span></span></code></pre></div>
+<p>Résultat :</p>
+<p>Un fichier rapport_nantes.html est généré et contient toutes les
+analyses de la commune et du département sélectionnés.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

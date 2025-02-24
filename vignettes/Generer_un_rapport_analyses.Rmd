@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 )
 ```
 
+
 # Introduction
 
 Le package LibrairieQDK permet d’analyser les données des élus français à travers plusieurs fonctions.
@@ -123,16 +124,37 @@ La fonction summary_departement() est un outil permettant d’analyser la répar
 Elle permet une analyse rapide et détaillée sur le nombre de communes représentées et la structure démographique des élus.
 
 
-# Génération d’un Rapport Quarto
+# Génération Automatique d’un Rapport HTML
 
-## Fonction generer_rapport(commune, departement, output)
+## Fonction : generer_rapport(commune, departement, output)
 
-La fonction generer_rapport() permet de générer un rapport interactif en HTML avec Quarto.
 
-Le rapport contiendra : 
+Description :
 
-- Un résumé des élus de la commune et du département.
-- Des statistiques détaillées sur les élus.
-- Des graphiques pour illustrer les résultats.
+Cette fonction génère un rapport Quarto au format HTML contenant :
 
-Le fichier rapport_commune.html sera généré et contiendra toutes les analyses.
+- Une analyse des élus d’une commune et d’un département.
+
+- Des statistiques détaillées.
+
+- Des graphiques pour visualiser les résultats.
+
+Arguments :
+
+- commune : Code de la commune à analyser.
+
+- departement : Code du département à analyser.
+
+- output : Nom du fichier de sortie.
+
+Exemple d’utilisation
+```{r}
+#generer_rapport(commune = "Nantes", departement = "Loire-Atlantique", output = "rapport_nantes.html")
+```
+
+Résultat :
+
+Un fichier rapport_nantes.html est généré et contient toutes les analyses de la commune et du département sélectionnés.
+
+
+
