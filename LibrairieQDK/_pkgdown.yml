@@ -1,51 +1,56 @@
-url: https://github.com/ton-repo/LibrairieQDK
+url: https://pierreqdk.github.io/librairie-/
 template:
   bootstrap: 5
   bootswatch: flatly
   includes:
-    in_header: "pkgdown/extra_header.html"
-
+    in_header: pkgdown/extra_header.html
 navbar:
   structure:
-    left: [home, reference, articles, news]
-    right: [search, github]
+    left:
+    - home
+    - reference
+    - articles
+    - news
+    right:
+    - search
+    - github
   components:
     home:
-      text: "Accueil"
+      text: Accueil
       href: index.html
     reference:
-      text: "Références"
+      text: Références
       href: reference/index.html
     articles:
-      text: "Articles"
+      text: Articles
       href: articles/index.html
     github:
-      icon: "fab fa-github"
+      icon: fab fa-github
       href: https://github.com/ton-repo/LibrairieQDK
-      aria-label: "Lien vers le dépôt GitHub"
-
+      aria-label: Lien vers le dépôt GitHub
 articles:
-  - title: "Générer un rapport d'analyses"
-    contents:
-      - Generer_un_rapport_analyses
-
+- title: Générer un rapport d'analyses
+  contents: Generer_un_rapport_analyses
 home:
   sidebar:
-    structure: [license, citation, authors]
+    structure:
+    - license
+    - citation
+    - authors
     components:
       license:
-        title: "License"
-        text: "GPL-3"
+        title: License
+        text: GPL-3
         href: https://www.gnu.org/licenses/gpl-3.0.fr.html
       citation:
-        title: "Citation"
-        text: "Citing LibrairieQDK"
+        title: Citation
+        text: Citing LibrairieQDK
         href: https://github.com/ton-repo/LibrairieQDK
       authors:
-        title: "Developers"
+        title: Developers
         text: |
           **Pierre Quintin de Kercadio**
           Publication : 2025
           pierre.quintindekercadio@gmail.com
-
 custom_css: pkgdown/custom.scss
+
