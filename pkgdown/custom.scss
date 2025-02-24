@@ -1,4 +1,4 @@
-/* Conteneur principal */
+
 .container {
   display: flex;
   justify-content: space-between;
@@ -6,7 +6,7 @@
   background-color: #f8f9fa;
 }
 
-/* Contenu principal */
+
 .main-content {
   flex: 3;
   margin-right: 30px;
@@ -15,7 +15,7 @@
 
 h1 {
   font-size: 2.5em;
-  color: #34495e; /* Gris foncé pour le titre */
+  color: #34495e;
   margin-bottom: 20px;
 }
 
@@ -27,14 +27,14 @@ ul {
 li {
   margin-bottom: 20px;
   font-size: 1.2em;
-  background-color: #2980b9; /* Bleu clair pour les bulles */
+  background-color: #2980b9;
   color: white;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Barre latérale */
+
 .sidebar {
   flex: 1;
   background-color: #ffffff;
@@ -45,7 +45,7 @@ li {
 
 .sidebar p {
   font-size: 1.1em;
-  color: #2c3e50; /* Gris foncé pour les paragraphes */
+  color: #2c3e50;
 }
 
 strong {
@@ -53,7 +53,7 @@ strong {
 }
 
 .sidebar a {
-  color: #2980b9; /* Bleu clair pour les liens */
+  color: #2980b9;
   text-decoration: none;
 }
 
@@ -61,10 +61,10 @@ strong {
   text-decoration: underline;
 }
 
-/* Ajout d'une bordure autour des blocs */
+
 ul li, .sidebar p {
   border: 1px solid #e1e1e1;
   padding: 15px;
   border-radius: 5px;
-  background-color: #ecf0f1; /* Gris clair pour le fond */
+  background-color: #ecf0f1;
 }
