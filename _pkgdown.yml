@@ -3,3 +3,20 @@ template:
   bootstrap: 5
   bootswatch: flatly
 
+
+  navbar:
+  structure:
+    left: [home, articles, references]
+    right: [search, github]
+  components:
+    home:
+      title: "LibrairieQDK"
+      href: index.html
+    articles:
+      title: "Articles"
+      href: articles/index.html
+    references:  # Changez ici !
+      title: "Références"
+      href: reference/index.html
+
+
