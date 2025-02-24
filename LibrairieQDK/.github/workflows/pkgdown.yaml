@@ -18,11 +18,13 @@ jobs:
       - name: Install dependencies
         run: Rscript -e 'install.packages("pkgdown")'
 
-      - name: Clean and Build site
-        run: |
-          rm -rf docs/
-          mkdir -p docs/
-          Rscript -e 'pkgdown::build_site()'
+      -     - name: Clean and Build site
+      run: |
+        rm -rf docs/
+        mkdir -p docs/
+        Rscript -e "pkgdown::build_site()"
+        touch docs/.nojekyll  # <-- Ajout du fichier .nojekyll
+
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
