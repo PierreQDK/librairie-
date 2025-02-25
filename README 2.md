@@ -1,7 +1,6 @@
 # LibrairieQDK
 
-LibrairieQDK est un package conçu pour l’analyse des données des élus au niveau des communes et des départements.
-
+La librairie QDK est un package conçu pour l’analyse des données des élus à l’échelle des communes et des départements. Son intérêt principal est d’offrir des outils automatisés pour extraire, analyser, visualiser et synthétiser les informations sur les élus.
 ## Principaux objectifs :
 
 <div style="display: block; text-align: left; margin-left: 0;">
@@ -25,14 +24,3 @@ LibrairieQDK est un package conçu pour l’analyse des données des élus au ni
   **Génération de rapports automatisés :**  
   Production de rapports personnalisés en **Quarto**, permettant d'obtenir rapidement une synthèse claire des données pour chaque territoire.
   </div>
-
-
-
-</div>
-
-<br>
-
-## Objectif du package
-
-L'objectif de **LibrairieQDK** est d’analyser les différentes caractéristiques des élus au sein des communes et des départements en fournissant des **outils statistiques, des visualisations et des rapports dynamiques** adaptés aux chercheurs, journalistes et décideurs.
-
