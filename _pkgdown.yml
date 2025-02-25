@@ -15,7 +15,7 @@ template:
     articles:
       title: "Articles"
       href: articles/index.html
-    references:  # Changez ici !
+    references:
       title: "Références"
       href: reference/index.html
 
