@@ -2,3 +2,17 @@ url: https://pierreqdk.github.io/librairie-/
 template:
   bootstrap: 5
 
+navbar:
+  structure:
+    left: [home, articles, references]
+    right: [search, github]
+  components:
+    home:
+      title: "LibrairieQDK"
+      href: index.html
+    articles:
+      title: "Articles"
+      href: articles/index.html
+    references:
+      title: "Références"
+      href: reference/index.html
