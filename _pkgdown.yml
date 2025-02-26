@@ -10,7 +10,7 @@ template:
     right: [search, github]
   components:
     home:
-      title: "LibrairieQDK"
+      title: "Présentation"
       href: index.html
     articles:
       title: "Articles"
